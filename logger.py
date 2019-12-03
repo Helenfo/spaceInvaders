@@ -7,12 +7,10 @@ def loggerProcess(name):
 # Create a UDP socket
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     server_address = ('localhost', 10000)
-    try:
-        sock.sendto(b'ok to receive', server_address)
+    sock.sendto(b'ok to receive', server_address)
         # Receive response
-        print('waiting to receive')
-        data, server = sock.recvfrom(4096)
-        print('received {!r}'.format(struct.unpack('<1f',data)))
-    finally:
-        print('closing socket')
-        sock.close()
+    print('waiting to receive')
+    data, server = sock.recvfrom(4096)
+    print('received {!r}'.format(struct.unpack('<1f',data)))
+    print('closing socket')
+    sock.close()
